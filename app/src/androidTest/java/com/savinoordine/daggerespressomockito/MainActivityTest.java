@@ -77,9 +77,7 @@ public class MainActivityTest {
         activityRule.launchActivity(new Intent());
 
         //onData(matches(AllOf(withId(R.id.my_recycler_view), instanceOf(RecycleViewFragment)))).atPosition()
-
-        SystemClock.sleep(2000);
-
+        
         onView(withText("aaa")).check(matches(isDisplayed()));
     }
 
