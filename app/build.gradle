@@ -7,6 +7,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
+        // Helps find the Dagger's generated file
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
     }
 }
@@ -38,6 +39,9 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile 'com.android.support:recyclerview-v7:22.0.0'
+    compile 'com.android.support:cardview-v7:22.0.0'
 
     testCompile 'junit:junit:4.12'
 
