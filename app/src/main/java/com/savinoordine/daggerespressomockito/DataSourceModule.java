@@ -1,15 +1,16 @@
 package com.savinoordine.daggerespressomockito;
 
 import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class AlphabetModule {
+public class DataSourceModule {
+
     @Provides
     @Singleton
-    public Alphabet provideAlphabet() {
-        return new Alphabet();
+    public DataSource provideDataSource() {
+        return new DataSource();
     }
-
 }

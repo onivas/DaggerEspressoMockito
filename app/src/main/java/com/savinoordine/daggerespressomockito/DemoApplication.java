@@ -6,7 +6,7 @@ import dagger.Component;
 
 public class DemoApplication extends Application {
     @Singleton
-    @Component(modules = AlphabetModule.class)
+    @Component(modules = {AlphabetModule.class, DataSourceModule.class} )
     public interface ApplicationComponent extends DemoComponent {
     }
 
@@ -18,6 +18,7 @@ public class DemoApplication extends Application {
         if (component == null) {
             component = DaggerDemoApplication_ApplicationComponent.builder()
                     .alphabetModule(new AlphabetModule())
+                    .dataSourceModule(new DataSourceModule())
                     .build();
         }
     }
