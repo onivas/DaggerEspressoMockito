@@ -5,21 +5,18 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 public class DemoApplication extends Application {
-    @Singleton
-    @Component(modules = {AlphabetModule.class, DataSourceModule.class} )
-    public interface ApplicationComponent extends DemoComponent {
-    }
-
     private DemoComponent component = null;
 
     @Override
     public void onCreate() {
         super.onCreate();
         if (component == null) {
-            component = DaggerDemoApplication_ApplicationComponent.builder()
+
+            component = DaggerDemoComponent.builder()
                     .alphabetModule(new AlphabetModule())
                     .dataSourceModule(new DataSourceModule())
                     .build();
+
         }
     }
 

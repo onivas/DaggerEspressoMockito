@@ -2,15 +2,10 @@ package com.savinoordine.daggerespressomockito;
 
 import android.app.Instrumentation;
 import android.content.Intent;
-import android.os.SystemClock;
-import android.provider.ContactsContract;
 import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.assertion.ViewAssertions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.support.v7.widget.RecyclerView;
 
-import org.hamcrest.core.AllOf;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -27,7 +22,8 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.Matchers.anything;
+import static org.hamcrest.Matchers.startsWith;
 
 
 @RunWith(AndroidJUnit4.class)
@@ -52,7 +48,7 @@ public class MainActivityTest {
 
         DemoApplication app = (DemoApplication) instrumentation.getTargetContext().getApplicationContext();
         // Some explaination https://blog.gouline.net/2015/05/04/dagger-2-even-sharper-less-square/
-        DemoComponent component = DaggerDemoApplication_ApplicationComponent.builder()
+        DemoComponent component = DaggerDemoComponent.builder()
                 .alphabetModule(new MockAlphabetModule(alphabet))
                 .dataSourceModule(new MockDataSourceModule(dataSource))
                 .build();
@@ -76,9 +72,15 @@ public class MainActivityTest {
 
         activityRule.launchActivity(new Intent());
 
-        //onData(matches(AllOf(withId(R.id.my_recycler_view), instanceOf(RecycleViewFragment)))).atPosition()
-        
         onView(withText("aaa")).check(matches(isDisplayed()));
+
+        onData(anything())
+                .inAdapterView(withId(R.id.my_recycler_view))
+                .atPosition(1)
+                .check(matches(withText(startsWith("ss"))));
+
+        //onView(withId(R.id.my_recycler_view)).check(RecyclerViewActions)
+
     }
 
 }
