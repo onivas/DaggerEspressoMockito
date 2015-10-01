@@ -9,7 +9,7 @@ import dagger.Component;
  * associate modules with injection targets
  */
 @Singleton
-@Component(modules = {AlphabetModule.class, DataSourceModule.class})
+@Component(modules = CommonModule.class)
 public interface DemoComponent {
     void inject(MainActivity mainActivity);
 }

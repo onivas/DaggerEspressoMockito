@@ -49,8 +49,7 @@ public class MainActivityTest {
         DemoApplication app = (DemoApplication) instrumentation.getTargetContext().getApplicationContext();
         // Some explaination https://blog.gouline.net/2015/05/04/dagger-2-even-sharper-less-square/
         DemoComponent component = DaggerDemoComponent.builder()
-                .alphabetModule(new MockAlphabetModule(alphabet))
-                .dataSourceModule(new MockDataSourceModule(dataSource))
+                .commonModule(new MockCommonModule(alphabet, dataSource))
                 .build();
 
         app.setComponent(component);

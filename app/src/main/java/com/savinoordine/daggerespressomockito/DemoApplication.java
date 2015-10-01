@@ -13,8 +13,7 @@ public class DemoApplication extends Application {
         if (component == null) {
 
             component = DaggerDemoComponent.builder()
-                    .alphabetModule(new AlphabetModule())
-                    .dataSourceModule(new DataSourceModule())
+                    .commonModule(new CommonModule())
                     .build();
 
         }

@@ -6,7 +6,13 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class DataSourceModule {
+public class CommonModule {
+
+    @Provides
+    @Singleton
+    public Alphabet provideAlphabet() {
+        return new Alphabet();
+    }
 
     @Provides
     @Singleton
